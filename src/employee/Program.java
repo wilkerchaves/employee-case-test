@@ -1,9 +1,11 @@
 package employee;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import employee.controller.EmployeeController;
 import employee.exceptions.InvalidDate;
@@ -19,6 +21,11 @@ import employee.service.EmployeeeService;
 public class Program {
 
 	public static void main(String[] args) {
+		
+
+		DecimalFormat df = new DecimalFormat("###,###.00");
+		
+		
 		
 		EmployeeController controller = new EmployeeController();		
 		controller.setSellerService(new EmployeeeService());	
@@ -53,27 +60,27 @@ public class Program {
 		
 		try {
 			System.out.println("------------");
-			controller.getTotalPaidAtMonth(employees, 22, 2022);
+			System.out.println("Total pago  (salário e benefício) no mês: R$ "+df.format(controller.getTotalPaidAtMonth(employees, 2, 2022)));
 			System.out.println();
 			System.out.println();
 			System.out.println("------------");
-			controller.getOnlySalaryPaidAtMonth(employees, 2, 2022);
+			System.out.println("Total pago (somente salário) no mês: R$ "+df.format(controller.getOnlySalaryPaidAtMonth(employees, 2, 2022)));
 			System.out.println();
 			System.out.println();
 			System.out.println("------------");
-			controller.getOnlyBonusPaidAtMonth(employees, 2, 2022);
+			System.out.println("Total pago (benefícios) no mês: R$ "+df.format(controller.getOnlyBonusPaidAtMonth(employees, 2, 2022)));
 			System.out.println();
 			System.out.println();
 			System.out.println("------------");
-			controller.getEmployeeBetterPaidAtMonth(employees, 2, 2022);
+			System.out.println("Fucnionario que recebeu o valor mais alto no mês: "+controller.getEmployeeBetterPaidAtMonth(employees, 2, 2022));
 			System.out.println();
 			System.out.println();
 			System.out.println("------------");
-			controller.getEmployeeWithBetterBonusAtMonth(employees, 2, 2022);
+			System.out.println("Nome do funcionario que recebeu o valor mais alto em beneficios no mês: "+controller.getEmployeeWithBetterBonusAtMonth(employees, 2, 2022));
 			System.out.println();
 			System.out.println();
 			System.out.println("------------");
-			controller.getBestSellerAtMonth(sellers ,2, 2022);
+			System.out.println("Vendedor que mais vendeu no mês: "+controller.getBestSellerAtMonth(sellers ,2, 2022));
 			
 		} catch (InvalidDate e) {
 			StandartError error = new StandartError(System.currentTimeMillis(), e.getMessage(), e.getMonth(), e.getYear());

@@ -33,7 +33,6 @@ public class EmployeeeService {
 				total += salary;
 			}
 		}
-		System.out.println("Salary and bonus total: " + total);
 		return total;
 	}
 
@@ -54,7 +53,6 @@ public class EmployeeeService {
 				total += salary;
 			}
 		}
-		System.out.println("Only salaary total: "+total);
 		return total;
 	}
 	
@@ -72,7 +70,6 @@ public class EmployeeeService {
 			}
 			
 		}
-		System.out.println("Only bonus total: "+total);
 		return total;
 	}
 	
@@ -84,7 +81,6 @@ public class EmployeeeService {
 				var sellerBonus = CalcBonus.calcBonusSeller(seller, month, year);
 				var salary = CalcBonus.calcSalaryByYears(seller, month, year);
 				Double total = sellerBonus + salary;
-				System.out.println("emp: " +seller.getName() + " total: "+total);
 				map.put(seller, total);
 			} else if (employee instanceof Secretary) {
 				var secretrary = (Secretary) employee;
@@ -92,13 +88,11 @@ public class EmployeeeService {
 				var salary = CalcBonus.calcSalaryByYears(secretrary, month, year);
 				Double total = secretaryBonus + salary;
 
-				System.out.println("emp: " +secretrary.getName() + " total: "+total);
 				map.put(secretrary, total);
 			} else {
 				var manager = (Manager) employee;
 				var salary = CalcBonus.calcSalaryByYears(manager, month, year);
 
-				System.out.println("emp: " +manager.getName() + " total: "+salary);
 				map.put(manager, salary);
 			}
 		}
@@ -106,7 +100,6 @@ public class EmployeeeService {
 		Employee emp = map.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get()
 				.getKey();
 		
-		System.out.println(emp);
 		return emp;
 	}
 
@@ -117,14 +110,12 @@ public class EmployeeeService {
 				var seller = (Seller) employee;
 				var sellerBonus = CalcBonus.calcBonusSeller(seller, month, year);
 				Double total = sellerBonus;
-				System.out.println("emp: " +seller.getName() + " total: "+total);
 				map.put(seller, total);
 			} else if (employee instanceof Secretary) {
 				var secretrary = (Secretary) employee;
 				var secretaryBonus = CalcBonus.calcBonusSecretary(secretrary, month, year);
 				Double total = secretaryBonus;
 
-				System.out.println("emp: " +secretrary.getName() + " total: "+total);
 				map.put(secretrary, total);
 			} 
 		}
@@ -132,7 +123,6 @@ public class EmployeeeService {
 		Employee emp = map.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get()
 				.getKey();
 		
-		System.out.println(emp);
 		return emp.getName();
 	}	
 
@@ -149,7 +139,6 @@ public class EmployeeeService {
 		}
 		Seller seller =  map.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get()
 				.getKey();
-		System.out.println(seller);
 		return seller;
 
 	}
